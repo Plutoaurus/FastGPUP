@@ -37,6 +37,7 @@
             allocationBar = new TrackBar();
             allocationBar.Minimum = 0;
             allocationBar.Maximum = 100;
+            allocationBar.Value = 50;
             allocLabel = new Label();
             installDriverBtn = new Button();
             RemoveButton = new Button();
