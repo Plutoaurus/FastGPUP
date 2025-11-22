@@ -34,7 +34,7 @@
             label2 = new Label();
             addButton = new Button();
             AllocationLabel = new Label();
-            allocationBar = new MetroFramework.Controls.MetroTrackBar();
+            allocationBar = new TrackBar();
             allocLabel = new Label();
             installDriverBtn = new Button();
             RemoveButton = new Button();
@@ -99,13 +99,11 @@
             // 
             // allocationBar
             // 
-            allocationBar.BackColor = Color.Transparent;
             allocationBar.Location = new Point(24, 184);
             allocationBar.Margin = new Padding(3, 2, 3, 2);
             allocationBar.Name = "allocationBar";
-            allocationBar.Size = new Size(223, 22);
+            allocationBar.Size = new Size(223, 45);
             allocationBar.TabIndex = 7;
-            allocationBar.Text = "null";
             allocationBar.Scroll += allocationBar_Scroll;
             // 
             // allocLabel
@@ -180,7 +178,7 @@
         private Label label2;
         private Button addButton;
         private Label AllocationLabel;
-        private MetroFramework.Controls.MetroTrackBar allocationBar;
+        private TrackBar allocationBar;
         private Label allocLabel;
         private Button installDriverBtn;
         private Button RemoveButton;

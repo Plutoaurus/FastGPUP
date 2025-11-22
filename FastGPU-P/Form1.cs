@@ -1,4 +1,5 @@
-using MetroFramework.Forms;
+using MaterialSkin.Controls;
+using MaterialSkin;
 using System.Management.Automation;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
@@ -6,11 +7,20 @@ using System.Management;
 
 namespace FastGPU_P
 {
-    public partial class Form1 : MetroForm
+    public partial class Form1 : MaterialForm
     {
         public Form1()
         {
             InitializeComponent();
+            // MaterialSkin manager setup
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(
+                Primary.Blue600, Primary.Blue700,
+                Primary.Blue200, Accent.LightBlue200,
+                TextShade.WHITE
+            );
             Shown += Form1_Shown;
         }
 
