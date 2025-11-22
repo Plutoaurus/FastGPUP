@@ -24,7 +24,7 @@ namespace FastGPU_P
             Shown += Form1_Shown;
         }
 
-        private void Form1_Shown(Object sender, EventArgs e)
+        private void Form1_Shown(object? sender, EventArgs e)
         {
             int i = 0;
 
@@ -55,7 +55,7 @@ namespace FastGPU_P
 
         }
 
-        private void allocationBar_Scroll(object sender, ScrollEventArgs e)
+        private void allocationBar_Scroll(object sender, EventArgs e)
         {
             this.allocLabel.Text = allocationBar.Value.ToString() + "%";
         }
