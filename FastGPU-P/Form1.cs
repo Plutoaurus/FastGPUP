@@ -95,7 +95,8 @@ namespace FastGPU_P
             }
 
             string _scr = (@"
-    Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+    $oldPolicy = Get-ExecutionPolicy
+    Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
     $VMName = " + "\"" + vmBox.GetItemText(vmBox.Text) + "\"" + @"
     $instance = " + "\"" + getGPUInstance(gpuBox.Text) + "\"" + @"
     [decimal]$GPUResourceAllocationPercentage = " + allocationBar.Value.ToString() + @"
@@ -108,6 +109,7 @@ namespace FastGPU_P
     Set-VM -GuestControlledCacheTypes $true -VMName $VMName
     Set-VM -LowMemoryMappedIoSpace 1Gb -VMName $VMName
     Set-VM -HighMemoryMappedIoSpace 32GB -VMName $VMName
+    Set-ExecutionPolicy -ExecutionPolicy $oldPolicy -Scope Process
 ");
             var _ps = PowerShell.Create();
             _ps.AddScript(_scr);
@@ -126,7 +128,8 @@ namespace FastGPU_P
         {
             //
             string _scr = @"
-Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+$oldPolicy = Get-ExecutionPolicy
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
 Import-Module Storage
 Function Add-VMGpuPartitionAdapterFiles {
     param(
@@ -240,6 +243,9 @@ If ($state_was_running){
     Start-VM $VMName
 }
 ";
+            _scr += @"
+Set-ExecutionPolicy -ExecutionPolicy $oldPolicy -Scope Process
+";
             var _ps = PowerShell.Create();
             _ps.AddScript(_scr);
             Collection<PSObject> _cObj = _ps.Invoke();
@@ -251,7 +257,6 @@ If ($state_was_running){
             {
                 MessageBox.Show("GPU driver updated successfully!");
             }
-            //
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
